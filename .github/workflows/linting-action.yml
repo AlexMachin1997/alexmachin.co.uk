@@ -2,14 +2,7 @@
 name: Application Linting
 
 # When the to run the linting
-on:
-  push:
-    branches-ignore:
-      - 'master'
-
-  pull_request:
-    branches-ignore:
-      - 'master'
+on: [push, pull_request]
 
 # Jobs to run for the action (You can have multiple actions in one file)
 jobs:

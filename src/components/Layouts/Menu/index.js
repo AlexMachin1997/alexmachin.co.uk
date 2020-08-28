@@ -7,7 +7,7 @@ const NavigationMenu = () => {
 	const scrollTo = (id) =>
 		document
 			.getElementById(id)
-			.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'start' });
+			.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' });
 
 	return (
 		<Container id='Navigation'>
