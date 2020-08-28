@@ -101,7 +101,7 @@ module.exports = {
 			resolve: 'gatsby-plugin-robots-txt',
 			options: {
 				host: siteMetadata.siteUrl,
-				sitemap: `${siteMetadata.siteUrl}/sitemap.xml`
+				sitemap: `${siteMetadata.siteUrl}sitemap.xml`
 			}
 		}
 	]
