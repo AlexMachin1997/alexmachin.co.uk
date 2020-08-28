@@ -6,7 +6,7 @@ export const Container = styled.footer`
 
 	/* Desktop specific styling */
 	@media (min-width: 600px) {
-		padding: 1rem 0 0;
+		padding: 0;
 	}
 `;
 
