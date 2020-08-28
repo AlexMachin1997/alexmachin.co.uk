@@ -5,7 +5,7 @@ require('dotenv').config({
 const siteMetadata = {
 	title: 'Alex Machin',
 	description:
-		'A passionate and hardworking software engineer who has been developing web applications using some of the latest technologies and languages, for example JavaScript, SASS and React.',
+		'A passionate and hardworking front-end web developer who uses some of the latest web technologies to produce websites and web applications.',
 	keywords: [
 		'web development',
 		'web app development',
