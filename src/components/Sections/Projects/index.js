@@ -45,7 +45,7 @@ const Projects = () => {
 						text={
 							<div>
 								<Icon icon='Github' size='40' />
-								<Typography type='p' text='React App' colour='black' weight='bolder' height='2.5' />
+								<Typography type='p' text='React' colour='black' weight='bolder' height='2.5' />
 							</div>
 						}
 						newTab
@@ -58,13 +58,7 @@ const Projects = () => {
 						text={
 							<div>
 								<Icon icon='Github' size='40' />
-								<Typography
-									type='p'
-									text='GraphQL Service'
-									colour='black'
-									weight='bolder'
-									height='2.5'
-								/>
+								<Typography type='p' text='GraphQL' colour='black' weight='bolder' height='2.5' />
 							</div>
 						}
 						newTab
