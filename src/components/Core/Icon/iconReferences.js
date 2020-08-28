@@ -1,0 +1,13 @@
+export const React = 'React';
+export const StoryBook = 'Storybook';
+export const Gulp = 'Gulp';
+export const StyledComponents = 'Styled-Components';
+export const Javascript = 'Javascript';
+export const Jest = 'Jest';
+export const NodeJS = 'NodeJS';
+export const Link = 'Link';
+export const Github = 'Github';
+export const Twitter = 'Twitter';
+export const Instagram = 'Instagram';
+export const LinkedIn = 'LinkedIn';
+export const Expo = 'Expo';
