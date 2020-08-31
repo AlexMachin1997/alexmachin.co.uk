@@ -38,8 +38,6 @@ const Contact = () => {
 
 	let content;
 
-	console.log(showSuccessMessage, isSubmitting);
-
 	if (isSubmitting === true) {
 		content = <Loader />;
 	}
