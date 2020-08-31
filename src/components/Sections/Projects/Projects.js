@@ -3,10 +3,11 @@ import styled from 'styled-components';
 export const Container = styled.section`
 	background: #f9f9f9;
 	text-align: center;
-	padding: 3rem;
+	padding: 3rem 0;
 
-	@media (max-width: 900px) {
-		padding: 3rem 0;
+	/* Tablet Styling */
+	@media (min-width: 900px) {
+		padding: 3rem;
 	}
 `;
 

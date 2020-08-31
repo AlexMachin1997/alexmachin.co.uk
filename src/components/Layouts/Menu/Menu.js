@@ -12,7 +12,7 @@ export const Container = styled.nav`
 	flex-wrap: wrap;
 	/* padding: 1rem 0 0 0; */
 	z-index: 10000;
-	@media (max-width: 500px) {
+	@media (max-width: 480px) {
 		padding: 1rem 0 0 0;
 	}
 `;

@@ -28,6 +28,7 @@ const getButtonText = (isSubmitting, errorMessage) => {
 const Contact = () => {
 	const [isSubmitting, setIsSubmitting] = useState(false);
 	const [errorMessage, setErrorMessage] = useState('');
+	const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
 	const { register, handleSubmit, errors, reset } = useForm({
 		mode: 'all',
@@ -35,27 +36,50 @@ const Contact = () => {
 		shouldUnregister: false
 	});
 
-	return (
-		<Container id='Contact'>
-			<Typography
-				type='h1'
-				text='Contact'
-				height={1.05}
-				size='2.5rem'
-				colour='black'
-				weight='bolder'
-			/>
-			<div>
-				<Typography
-					type='p'
-					text={errorMessage.length !== 0 ? errorMessage : ''}
-					size='1.2rem'
-					height={2}
-					colour='red'
-					weight='bold'
-				/>
-			</div>
-			{isSubmitting === false ? (
+	let content;
+
+	console.log(showSuccessMessage, isSubmitting);
+
+	if (isSubmitting === true) {
+		content = <Loader />;
+	}
+
+	if (showSuccessMessage === true) {
+		content = (
+			<>
+				<div style={{ margin: '1rem 0' }}>
+					<Typography
+						type='h3'
+						colour='black'
+						size='1.5rem'
+						text='Your message was successfully sent.'
+					/>
+				</div>
+				<div style={{ margin: '1rem 0' }}>
+					<Typography
+						type='h3'
+						colour='black'
+						size='1.5rem'
+						text='I will get back to you in approximately 1 to 2 days.'
+					/>
+				</div>
+			</>
+		);
+	}
+
+	if (showSuccessMessage === false && isSubmitting === false) {
+		content = (
+			<>
+				<div>
+					<Typography
+						type='p'
+						text={errorMessage.length !== 0 ? errorMessage : ''}
+						size='1.2rem'
+						height={2}
+						colour='red'
+						weight='bold'
+					/>
+				</div>
 				<form
 					name='Contact_Me'
 					method='post'
@@ -76,10 +100,11 @@ const Contact = () => {
 								}
 							);
 
-							if (response.status === 200) {
+							if (response.status !== 200) {
 								throw Error("Look's like something went wrong, try again.");
 							}
 
+							setShowSuccessMessage(true);
 							setIsSubmitting(false);
 							reset();
 						} catch (err) {
@@ -205,9 +230,21 @@ const Contact = () => {
 						borderRadius='1rem'
 					/>
 				</form>
-			) : (
-				<Loader />
-			)}
+			</>
+		);
+	}
+
+	return (
+		<Container id='Contact'>
+			<Typography
+				type='h1'
+				text='Contact'
+				height={1.05}
+				size='2.5rem'
+				colour='black'
+				weight='bolder'
+			/>
+			<>{content}</>
 		</Container>
 	);
 };
