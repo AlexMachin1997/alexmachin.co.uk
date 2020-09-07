@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import { useStaticQuery, graphql } from 'gatsby';
 import { useLocation } from '@reach/router';
+import socialMediaImage from '../../../../../static/social_profile_picture.jpg';
 
 const Head = ({ title, description, keywords, url }) => {
 	const data = useStaticQuery(graphql`
@@ -26,8 +27,11 @@ const Head = ({ title, description, keywords, url }) => {
 	const pageTitle = title || data.site.siteMetadata.title;
 	const pageDescription = description || data.site.siteMetadata.description;
 	let pageKeywords = keywords || data.site.siteMetadata.keywords;
-	const pageUrl = `${data.site.siteMetadata.siteUrl}/${pathname}`;
-	const socialMediaImage = '../../../../../static/social_profile_picture.jpg';
+	let pageUrl = data.site.siteMetadata.siteUrl;
+
+	if (pathname !== '/') {
+		pageUrl = `${data.site.siteMetadata.siteUrl}/${pathname}`;
+	}
 
 	if (Array.isArray(pageKeywords) === true) {
 		pageKeywords = pageKeywords.join(', ');
