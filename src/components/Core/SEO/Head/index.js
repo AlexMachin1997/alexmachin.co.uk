@@ -76,9 +76,9 @@ const Head = ({ title, description, keywords, url }) => {
 
       */}
 			<meta property='twitter:card' content='summary_large_image' />
-			<meta property='twitter:url' content={url || data.site.siteMetadata.url} />
-			<meta property='twitter:title' content={data.site.siteMetadata.socialLinks.twitter} />
-			<meta property='twitter:creator' content={data.site.siteMetadata.socialLinks.twitter} />
+			<meta property='twitter:url' content={pageUrl} />
+			<meta property='twitter:title' content={pageTitle} />
+			<meta property='twitter:creator' content='@AlexMachin97' />
 			<meta property='twitter:description' content={pageDescription} />
 			<meta property='twitter:image' content={socialMediaImage} />
 		</Helmet>
