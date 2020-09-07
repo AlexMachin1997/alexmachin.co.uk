@@ -59,7 +59,6 @@ const Head = ({ title, description, keywords, url }) => {
       Open Graph / Facebook
 
       */}
-			<meta property='keywords' content={pageKeywords} />
 			<meta property='og:title' content={pageTitle} />
 			<meta property='og:type' content='website' />
 			<meta property='og:description' content={pageDescription} />
