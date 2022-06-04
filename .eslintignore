@@ -1,7 +1,5 @@
 node_modules/*
 
-./src/components/Normalize.js
-
 package-lock.json
 
 ./README.md
@@ -12,12 +10,8 @@ package-lock.json
 
 ./.github/workflows/*.yml
 
-gatsby-browser.js
-
-gatsby-config.js
-
-gatsby-node.js
-
-gatsby-ssr.js
+server.js
 
 public/*
+
+postcss.config.js
