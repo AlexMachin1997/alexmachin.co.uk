@@ -1,0 +1,17 @@
+node_modules/*
+
+package-lock.json
+
+./README.md
+
+*.test.js
+
+*.stories.js
+
+./.github/workflows/*.yml
+
+server.js
+
+public/*
+
+postcss.config.js
