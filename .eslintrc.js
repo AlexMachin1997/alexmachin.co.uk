@@ -7,7 +7,8 @@ module.exports = {
 		'eslint:recommended',
 		'plugin:react-hooks/recommended',
 		'plugin:react/recommended',
-		'plugin:import/react'
+		'plugin:import/react',
+		'plugin:react/jsx-runtime'
 	],
 	plugins: ['prettier', 'react'],
 	globals: {
@@ -84,7 +85,6 @@ module.exports = {
 		'consistent-return': 0,
 		'react/display-name': 0,
 		'react/no-array-index-key': 0,
-		'react/react-in-jsx-scope': 2,
 		'react/prefer-stateless-function': 0,
 		'react/forbid-prop-types': 0,
 		'react/no-unescaped-entities': 0,
@@ -114,6 +114,8 @@ module.exports = {
 		],
 		'react-hooks/rules-of-hooks': 0,
 		'react-hooks/exhaustive-deps': 'error',
-		'jsx-quotes': ['error', 'prefer-single']
+		'jsx-quotes': ['error', 'prefer-single'],
+		'react/jsx-uses-react': 'off',
+		'react/react-in-jsx-scope': 'off'
 	}
 };

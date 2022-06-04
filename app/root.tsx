@@ -1,6 +1,14 @@
-import * as React from 'react';
-import type { LinksFunction, MetaFunction } from '@remix-run/node';
-import { Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration } from '@remix-run/react';
+import type { LinksFunction, MetaFunction, LoaderFunction } from '@remix-run/node';
+import { json } from '@remix-run/node';
+import {
+	Links,
+	LiveReload,
+	Meta,
+	Outlet,
+	Scripts,
+	ScrollRestoration,
+	useLoaderData
+} from '@remix-run/react';
 import styles from './styles/app.css';
 
 export const meta: MetaFunction = ({ location }) => {
@@ -26,7 +34,6 @@ export const meta: MetaFunction = ({ location }) => {
 		'graphql',
 		'south yorkshire',
 		'web application',
-		'gatsby',
 		'react'
 	];
 
@@ -85,36 +92,95 @@ export const meta: MetaFunction = ({ location }) => {
 };
 
 export const links: LinksFunction = () => [
-	{ rel: 'stylesheet', href: styles },
+	{ rel: 'stylesheet preload', href: styles, as: 'style' },
 	{
 		rel: 'preconnect',
-		href: 'https://fonts.googleapis.com'
+		href: 'https://fonts.googleapis.com',
+		as: 'style'
 	},
 	{
 		rel: 'preconnect',
 		href: 'https://fonts.gstatic.com',
-		crossOrigin: 'anonymous'
+		crossOrigin: 'anonymous',
+		as: 'style'
 	},
 	{
 		rel: 'stylesheet',
-		href: 'https://fonts.googleapis.com/css2?family=Signika:wght@300;400;700&display=swap'
+		href: 'https://fonts.googleapis.com/css2?family=Signika:wght@300;400;700&display=swap',
+		as: 'style'
 	}
 ];
 
-const App = () => (
-	<html lang='en'>
-		<head>
-			<Meta />
-			<Links />
-		</head>
-		<body>
-			<Outlet />
-			<ScrollRestoration />
-			<Scripts />
+type LoaderData = {
+	GOOGLE_ANALYTICS_TAG_CODE: string | undefined;
+};
 
-			{process.env.NODE_ENV === 'development' && <LiveReload />}
-		</body>
-	</html>
-);
+export const loader: LoaderFunction = () =>
+	json<LoaderData>({
+		GOOGLE_ANALYTICS_TAG_CODE: process.env.GOOGLE_ANALYTICS_TAG_CODE
+	});
+
+const App = () => {
+	const { GOOGLE_ANALYTICS_TAG_CODE } = useLoaderData<LoaderData>();
+
+	return (
+		<html lang='en'>
+			<head>
+				<Meta />
+				<Links />
+			</head>
+			<body>
+				{/*
+
+					Google Analytics Setup:
+
+					- The following code was found from https://github.com/remix-run/remix/blob/main/examples/google-analytics/app/root.tsx
+
+					- When in Production mode inject the Google tracking code, will track page views automatically.
+
+					- The main google analytics code is injected below via async scripts
+				*/}
+				{process.env.NODE_ENV === 'production' && (
+					<>
+						<script
+							async
+							src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ANALYTICS_TAG_CODE}`}
+						/>
+
+						<script
+							async
+							id='gtag-init'
+							// eslint-disable-next-line react/no-danger
+							dangerouslySetInnerHTML={{
+								__html: `
+                	window.dataLayer = window.dataLayer || [];
+
+									function gtag(){
+										dataLayer.push(arguments);
+									}
+
+									gtag('js', new Date());
+
+                	gtag('config', '${GOOGLE_ANALYTICS_TAG_CODE}');
+              `
+							}}
+						/>
+					</>
+				)}
+
+				{/* The main layout for the application */}
+				<main>
+					<Outlet />
+				</main>
+
+				<ScrollRestoration />
+
+				<Scripts />
+
+				<LiveReload />
+			</body>
+		</html>
+	);
+};
 
 export default App;

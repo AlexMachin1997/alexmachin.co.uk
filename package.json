@@ -1,38 +1,40 @@
 {
-	"name": "remix-template-netlify",
+	"name": "alexmachin.co.uk",
 	"private": true,
 	"description": "",
 	"license": "",
 	"sideEffects": false,
+	"main": "server.js",
 	"scripts": {
-		"build:css": "tailwindcss -m -i ./styles/app.css -o app/styles/app.css",
-		"dev:css": "tailwindcss -w -i ./styles/app.css -o app/styles/app.css",
+		"production:css": "tailwindcss -m -i ./styles/app.css -o app/styles/app.css --minify",
+		"development:css": "tailwindcss -w -i ./styles/app.css -o app/styles/app.css",
+		"production": "yarn production:css && remix build",
+		"development": "cross-env NODE_ENV=development concurrently \"yarn development:css\" \"netlify dev\"",
 		"start": "cross-env NODE_ENV=production netlify dev",
 		"lint": "eslint ./app/**/*.{js,tsx,jsx} --fix",
-		"prettier": "prettier --write ./app",
-		"production": "npm run build:css && remix build",
-		"development": "cross-env NODE_ENV=development concurrently \"npm run dev:css\" \"netlify dev\""
+		"prettier": "prettier --write ./app"
 	},
 	"dependencies": {
 		"@netlify/functions": "^0.10.0",
 		"@remix-run/netlify": "^1.4.3",
 		"@remix-run/node": "^1.4.3",
 		"@remix-run/react": "^1.4.3",
-		"cross-env": "^7.0.3",
 		"react": "^17.0.2",
-		"react-dom": "^17.0.2"
+		"react-dom": "^17.0.2",
+		"styled-components": "^5.3.5",
+		"styled-icons": "^10.45.0",
+		"yup": "^0.32.11"
 	},
 	"devDependencies": {
+		"cross-env": "^7.0.3",
 		"@remix-run/dev": "^1.4.3",
 		"@remix-run/eslint-config": "^1.4.3",
 		"@types/react": "^17.0.24",
 		"@types/react-dom": "^17.0.9",
+		"@types/styled-components": "^5.1.25",
 		"autoprefixer": "^10.4.5",
 		"concurrently": "^7.1.0",
 		"eslint": "^8.11.0",
-		"postcss": "^8.4.13",
-		"tailwindcss": "^3.0.24",
-		"typescript": "^4.5.5",
 		"eslint-config-airbnb": "^19.0.0",
 		"eslint-config-prettier": "^8.3.0",
 		"eslint-plugin-import": "^2.25.3",
@@ -40,10 +42,11 @@
 		"eslint-plugin-prettier": "^4.0.0",
 		"eslint-plugin-react": "^7.27.0",
 		"eslint-plugin-react-hooks": "^4.3.0",
-		"eslint-plugin-storybook": "^0.5.11",
-		"eslint-webpack-plugin": "^3.0.1",
+		"postcss": "^8.4.13",
 		"prettier": "^2.5.1",
-		"prettier-plugin-tailwindcss": "^0.1.8"
+		"prettier-plugin-tailwindcss": "^0.1.8",
+		"tailwindcss": "^3.0.24",
+		"typescript": "^4.5.5"
 	},
 	"engines": {
 		"node": ">=14"
