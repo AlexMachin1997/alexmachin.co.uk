@@ -1,5 +1,5 @@
 <h1 align="center">
-    <img alt="Remix Logo" title="Gatsby Logo" src=".github/logo.png" width="250px" />
+    <img alt="Remix Logo" title="Remix logo" src=".github/logo.png" width="150px" />
 </h1>
 
 <h2 align="center">
