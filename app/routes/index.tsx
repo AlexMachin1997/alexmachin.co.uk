@@ -206,7 +206,7 @@ export const action: ActionFunction = async ({ request }) => {
 	}
 
 	// Encode the formData to a string e.g. firstName=Alex&lastName=Machin etc
-	const encodedFormData: string = encode({ 'form-name': 'Contact_Me', ...formData });
+	const encodedFormData: string = encode({ 'form-name': 'Contact_Me', ...parsedFormData });
 
 	// Attempt to submit the Netlify form
 	try {
@@ -262,7 +262,7 @@ const Index = () => {
 
 	const state: 'idle' | 'success' | 'error' | 'submitting' = React.useMemo(() => {
 		// If the submission exists then it's a submitting status
-		if (transition.submission) {
+		if (transition.state === 'loading') {
 			return 'submitting';
 		}
 
@@ -278,7 +278,7 @@ const Index = () => {
 
 		// If none of the above is met then it's an idle status
 		return 'idle';
-	}, [transition.submission, actionData]);
+	}, [transition.state, actionData]);
 
 	// Map the icon name provided to icon
 	const getIcon = (icon: string): React.ReactNode | null => {
@@ -415,7 +415,7 @@ const Index = () => {
 				id='About'
 				className='ml-auto mr-auto max-w-[1000px] bg-white pt-32 pb-4 pl-4 pr-4 text-center'
 			>
-				<h1 className='mb-5 text-4xl font-medium text-black'>About Me</h1>
+				<h2 className='mb-5 text-4xl font-medium text-black'>About Me</h2>
 
 				<p className='mb-5 text-lg'>
 					Hello, my name is Alex Machin. I am a Front-End Web Developer from Sheffield who loves
@@ -452,7 +452,7 @@ const Index = () => {
 
 			<section id='Projects' className='bg-slate-100'>
 				<div className='ml-auto mr-auto max-w-[1000px] p-4 text-center'>
-					<h1 className='text-4xl font-medium text-black'>Projects</h1>
+					<h2 className='text-4xl font-medium text-black'>Projects</h2>
 
 					<ul className='grid grid-cols-1 items-center gap-y-10 p-4 text-center md:grid-cols-2 md:gap-x-[5rem]'>
 						{projects?.map((project) => (
@@ -497,7 +497,7 @@ const Index = () => {
 
 			<section id='Contact' className='bg-white'>
 				<div className='ml-auto mr-auto max-w-[800px] p-12 text-center'>
-					<h1 className='text-4xl font-medium text-black'>Contact</h1>
+					<h2 className='text-4xl font-medium text-black'>Contact</h2>
 
 					{actionData?.errors?.message && (
 						<h3 className='text-2xl font-bold text-red-600'>{actionData?.errors?.message ?? ''}</h3>
@@ -507,10 +507,11 @@ const Index = () => {
 						method='post'
 						noValidate
 						ref={formRef}
-						data-netlify='true'
 						aria-hidden={state === 'success'}
 						style={{ display: state === 'success' ? 'none' : 'block' }}
 						replace={false}
+						name='Contact_Me'
+						data-netlify='true'
 					>
 						<fieldset className='flex flex-col' disabled={state === 'submitting'}>
 							<label htmlFor='name' className='flex flex-col pb-4'>
@@ -570,7 +571,7 @@ const Index = () => {
 
 							<button
 								type='submit'
-								className='m-auto rounded-lg bg-yellow py-2 px-16 text-lg font-bold text-black'
+								className='m-auto rounded-lg bg-yellow py-2 px-16 text-lg font-bold text-black disabled:opacity-60'
 								disabled={state === 'submitting'}
 							>
 								{state !== 'submitting' ? 'Submit' : 'Submitting....'}

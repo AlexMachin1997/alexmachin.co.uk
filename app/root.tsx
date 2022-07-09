@@ -51,7 +51,7 @@ export const meta: MetaFunction = ({ location }) => {
 	// Main SEO tags object
 	const PrimaryTagsObject = {
 		title,
-		description: '',
+		description,
 		keywords: keywords.join(' ,')
 	};
 
