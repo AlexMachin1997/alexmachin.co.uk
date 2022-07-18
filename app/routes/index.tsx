@@ -206,7 +206,7 @@ export const action: ActionFunction = async ({ request }) => {
 	}
 
 	// Encode the formData to a string e.g. firstName=Alex&lastName=Machin etc
-	const encodedFormData: string = encode({ 'form-name': 'Contact_Me', ...parsedFormData });
+	const encodedFormData: string = encode({ ...parsedFormData });
 
 	// Attempt to submit the Netlify form
 	try {
@@ -514,6 +514,12 @@ const Index = () => {
 						data-netlify='true'
 					>
 						<fieldset className='flex flex-col' disabled={state === 'submitting'}>
+							<input type='hidden' name='form-name' value='Contact_Me' />
+
+							<label className='hidden' htmlFor='bot-field'>
+								Don’t fill this out if you’re human: <input name='bot-field' />
+							</label>
+
 							<label htmlFor='name' className='flex flex-col pb-4'>
 								<span className='flex'>
 									Name
