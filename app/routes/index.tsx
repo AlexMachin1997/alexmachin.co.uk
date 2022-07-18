@@ -505,7 +505,6 @@ const Index = () => {
 					)}
 
 					<Form
-						reloadDocument
 						method='post'
 						action='/?index'
 						noValidate
