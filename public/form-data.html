@@ -1,0 +1,42 @@
+<form hidden name="Contact_Me" data-netlify="true" netlify-honeypot="bot-field">
+	<input type="hidden" name="form-name" value="Contact_Me" />
+	<label className="hidden" htmlFor="bot-field">
+		Don’t fill this out if you’re human: <input name="bot-field" />
+	</label>
+
+	<label htmlFor="name" className="flex flex-col pb-4">
+		<span className="flex">
+			Name
+			<span className="text-2xl text-yellow">*</span>
+		</span>
+		<input
+			id="name"
+			type="text"
+			placeholder="Your Name goes here"
+			name="Name"
+			className="border-2 border-gray-200 p-2"
+		/>
+	</label>
+
+	<label htmlFor="email" className="flex flex-col pb-4">
+		<span className="flex"> Email Address <span className="text-2xl text-yellow">*</span> </span>
+		<input
+			id="email"
+			type="email"
+			placeholder="Your Email goes here"
+			name="EmailAddress"
+			className="border-2 border-gray-200 p-2"
+		/>
+	</label>
+
+	<label htmlFor="message" className="flex flex-col pb-4">
+		<span className="flex"> Message <span className="text-2xl text-yellow">*</span> </span>
+		<textarea
+			id="message"
+			placeholder="Your message goes here"
+			name="Message"
+			className="border-2 border-gray-200 p-2"
+		></textarea>
+	</label>
+	<button type="submit">Submit</button>
+</form>
