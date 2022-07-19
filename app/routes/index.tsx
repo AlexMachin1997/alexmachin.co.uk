@@ -151,7 +151,7 @@ export const loader = async () => {
 export const action: ActionFunction = async ({ request }) => {
 	// Get the formData
 	const formData = await request.formData();
-	const baseUrl = await request.url;
+	const baseUrl = request.url;
 
 	const encode = (data: Object) =>
 		Object.keys(data)
