@@ -151,6 +151,7 @@ export const loader = async () => {
 export const action: ActionFunction = async ({ request }) => {
 	// Get the formData
 	const formData = await request.formData();
+	const baseUrl = request.url;
 
 	const encode = (data: Object) =>
 		Object.keys(data)
@@ -211,7 +212,7 @@ export const action: ActionFunction = async ({ request }) => {
 	// Attempt to submit the Netlify form
 	try {
 		// Perform the request, 'Netlify' should handle this correctly when they host the site and in development it will just succeed.
-		const response = await fetch('/', {
+		const response = await fetch(`${baseUrl}/form-data`, {
 			method: 'POST',
 			body: encodedFormData,
 			headers: {
@@ -505,6 +506,7 @@ const Index = () => {
 
 					<Form
 						method='post'
+						action='/?index'
 						noValidate
 						ref={formRef}
 						aria-hidden={state === 'success'}
